@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Stone map</title>
+
+<script src="jquery-2.1.0.min.js"></script>
+
+<style type="text/css">
+html {
+    height: 100%;
+}
+body {
+    height: 100%; margin: 0; padding: 0;
+}
+#map-canvas {
+    height: 100%;
+}
+</style>
+
+ <script type="text/javascript"
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCO-r9oH2ffLHKxlrXAYa7OPVUYF0OBxQg&sensor=false">
+</script>
+
+<script type="text/javascript">
+    function initialize() {
+        var mapOptions = {
+            center: new google.maps.LatLng(43.072233,-89.409233), zoom: 8
+        };
+        var map = new google.maps.Map(document.getElementById("map-canvas"), mapOptions);
+    }
+    google.maps.event.addDomListener(window, 'load', initialize);
+</script>
+
+<script type="text/javascript">
+    $(document).ready(function() {
+        $.ajax( {
+            url: "http://riptide.alexkersten.com:3333/stoneapi/message/get/0/0/1000000000"
+        }).then(function(data) {
+            alert("OK");
+            $.each(data, function(x) {
+                alert(x.message);
+            }
+
+        });
+    });
+</script>
+</head>
+
+<body>
+    <div id="map-canvas"/>
+</body>
+</html>
